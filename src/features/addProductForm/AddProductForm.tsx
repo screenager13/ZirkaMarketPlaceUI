@@ -10,7 +10,7 @@ const AddProductForm = () => {
             name: '',
             description: '',
             price: 0,
-            img: '',
+            photoUrl: '',
             availableAmount: 0,
         },
     });
@@ -121,7 +121,7 @@ const AddProductForm = () => {
                     )}
                 />
                 <Controller
-                    name="img"
+                    name="photoUrl"
                     control={control}
                     rules={{ required: 'URL zdjęcia jest wymagany' }}
                     render={({ field, fieldState }) => (
