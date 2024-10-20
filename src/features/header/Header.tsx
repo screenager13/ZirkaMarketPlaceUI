@@ -114,7 +114,7 @@ const Header = () => {
                         </ButtonGroup>
                     </Link>
                     <Button
-                        variant="outlined"
+                        variant="contained"
                         color="secondary"
                         sx={{
                             borderRadius: 4,
@@ -133,7 +133,7 @@ const Header = () => {
                         />
                     </Search>
                     <Box sx={{ width: 100 }} />
-                    <Link to={'/cart'}>
+                    <Link to={'/products'}>
                         <IconButton aria-label="cart" size="large">
                             <ShoppingCartIcon fontSize="inherit" />
                         </IconButton>

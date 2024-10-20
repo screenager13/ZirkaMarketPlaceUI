@@ -29,10 +29,12 @@ const AddProductForm = () => {
 
     return (
         <Card
+            elevation={4}
             sx={{
+                mt: 10.5,
                 width: 300,
-                height: 600,
-                backgroundColor: 'primary.light',
+                minHeight: 400,
+                backgroundColor: 'primary.main',
                 p: 3,
                 borderRadius: 3,
                 gap: 1,
@@ -57,6 +59,7 @@ const AddProductForm = () => {
                     rules={{ required: 'Nazwa jest wymagana' }}
                     render={({ field, fieldState }) => (
                         <TextField
+                            color={'secondary'}
                             {...field}
                             label="Nazwa"
                             fullWidth
@@ -77,6 +80,7 @@ const AddProductForm = () => {
                     rules={{ required: 'Opis jest wymagany' }}
                     render={({ field, fieldState }) => (
                         <TextField
+                            color={'secondary'}
                             {...field}
                             label="Opis"
                             multiline
@@ -105,6 +109,7 @@ const AddProductForm = () => {
                     }}
                     render={({ field, fieldState }) => (
                         <TextField
+                            color={'secondary'}
                             {...field}
                             label="Cena w PLN"
                             type="number"
@@ -126,6 +131,7 @@ const AddProductForm = () => {
                     rules={{ required: 'URL zdjęcia jest wymagany' }}
                     render={({ field, fieldState }) => (
                         <TextField
+                            color={'secondary'}
                             {...field}
                             label="URL Zdjęcia"
                             fullWidth
@@ -152,6 +158,7 @@ const AddProductForm = () => {
                     }}
                     render={({ field, fieldState }) => (
                         <TextField
+                            color={'secondary'}
                             {...field}
                             label="Ilość"
                             type="number"
@@ -170,7 +177,7 @@ const AddProductForm = () => {
                 <Button
                     type="submit"
                     variant="contained"
-                    color="primary"
+                    color="secondary"
                     sx={{ mt: 2, borderRadius: 3 }}
                     fullWidth
                 >

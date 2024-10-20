@@ -2,16 +2,16 @@ import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
     colorSchemes: {
-        light: {
+        dark: {
             palette: {
                 primary: {
-                    main: '#393E46',
+                    main: '#000000',
                 },
                 secondary: {
-                    main: '#00ADB5',
+                    main: '#52057B',
                 },
                 background: {
-                    default: '#222831',
+                    default: '#494949',
                 },
             },
         },

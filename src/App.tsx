@@ -4,6 +4,7 @@ import { CircularProgress, Container, CssBaseline } from '@mui/material';
 import MainPage from './features/pages/mainPage/MainPage.tsx';
 import Header from './features/header/Header.tsx';
 import ProductsPage from './features/pages/productsPage/ProductsPage.tsx';
+import SingleProduct from './features/pages/singleProduct/SingleProduct.tsx';
 
 function App() {
     return (
@@ -23,6 +24,10 @@ function App() {
                     <Routes>
                         <Route path={'/'} element={<MainPage />} />
                         <Route path={'/products'} element={<ProductsPage />} />
+                        <Route
+                            path={'/products/:id'}
+                            element={<SingleProduct />}
+                        />
                     </Routes>
                     {/*<Footer/>*/}
                 </Container>

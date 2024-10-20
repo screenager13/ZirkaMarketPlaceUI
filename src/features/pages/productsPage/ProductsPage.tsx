@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Divider } from '@mui/material';
 import AddProductForm from '../../addProductForm/AddProductForm.tsx';
 import ProductsList from '../../productsList/ProductsList.tsx';
 
@@ -8,6 +8,9 @@ const ProductsPage = () => {
         <Container
             maxWidth={'lg'}
             sx={{
+                backgroundColor: '#272727',
+                minHeight: '100vh',
+                height: 'auto',
                 pt: { xs: 9, sm: 10 },
                 display: 'flex',
                 flexDirection: 'row',
@@ -18,6 +21,12 @@ const ProductsPage = () => {
             <Box>
                 <ProductsList />
             </Box>
+            <Divider
+                orientation="vertical"
+                variant="middle"
+                sx={{ bgcolor: 'primary.main' }}
+                flexItem
+            />
             <Box>
                 <AddProductForm />
             </Box>
