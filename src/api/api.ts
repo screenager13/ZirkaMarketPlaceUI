@@ -33,7 +33,7 @@ const axiosBaseQuery =
     };
 
 export const api = createApi({
-    reducerPath: 'authApi',
+    reducerPath: 'Product',
     baseQuery: axiosBaseQuery({
         baseUrl: API_URL,
     }),

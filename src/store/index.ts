@@ -1,15 +1,14 @@
-import {configureStore} from "@reduxjs/toolkit";
-// import {authApi} from "../api/auth/authApiSlice";
-// import user from "../api/auth/userSlice"
+import { configureStore } from '@reduxjs/toolkit';
+import { productApiSlice } from '../api/product/productApiSlice.ts';
 const index = configureStore({
     reducer: {
-        // [authApi.reducerPath]: authApi.reducer,
-        // user
+        [productApiSlice.reducerPath]: productApiSlice.reducer,
     },
-    // middleware: getDefaultMiddleware => getDefaultMiddleware().concat(authApi.middleware),
-    // devTools: process.env.NODE_ENV !== 'production',
-})
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(productApiSlice.middleware),
+});
 
 export default index;
 
 export type RootState = ReturnType<typeof index.getState>;
+export type AppDispatch = typeof index.dispatch;

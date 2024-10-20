@@ -5,13 +5,13 @@ export const theme = createTheme({
         light: {
             palette: {
                 primary: {
-                    main: '#7E60BF',
+                    main: '#393E46',
                 },
                 secondary: {
-                    main: '#E4B1F0',
+                    main: '#00ADB5',
                 },
                 background: {
-                    default: '#433878',
+                    default: '#222831',
                 },
             },
         },
