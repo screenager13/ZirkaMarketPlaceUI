@@ -6,8 +6,8 @@ import { useGetProductsQuery } from '../../api/product/productApiSlice.ts';
 
 const ProductsList = () => {
     const { data } = useGetProductsQuery();
-
-    // const data: Product[] = [
+    const products = data?.items;
+    // const products: Product[] = [
     //     {
     //         id: 'kindOfId',
     //         name: 'Zirka',
@@ -34,8 +34,8 @@ const ProductsList = () => {
             <Typography component="h1" variant="h2">
                 Twoje towary
             </Typography>
-            {data &&
-                data.map((item: Product) => (
+            {products &&
+                products.map((item: Product) => (
                     <ProductsListItem
                         key={item.id}
                         id={item.id}

@@ -3,7 +3,7 @@ import { Product, ProductForm } from '../../types/product.ts';
 
 export const productApiSlice = api.injectEndpoints({
     endpoints: (builder) => ({
-        getProducts: builder.query<Product[], void>({
+        getProducts: builder.query<{ items: Product[] }, void>({
             query: () => ({
                 url: '/products',
                 method: 'get',
