@@ -5,6 +5,7 @@ import MainPage from './features/pages/mainPage/MainPage.tsx';
 import Header from './features/header/Header.tsx';
 import ProductsPage from './features/pages/productsPage/ProductsPage.tsx';
 import SingleProduct from './features/pages/singleProduct/SingleProduct.tsx';
+import PaymentForm from './features/paymentForm/paymentForm.tsx';
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                             path={'/products/:id'}
                             element={<SingleProduct />}
                         />
+                        <Route path={'/payment'} element={<PaymentForm />} />
                     </Routes>
                     {/*<Footer/>*/}
                 </Container>
