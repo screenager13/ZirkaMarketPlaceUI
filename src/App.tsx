@@ -5,7 +5,7 @@ import MainPage from './features/pages/mainPage/MainPage.tsx';
 import Header from './features/header/Header.tsx';
 import ProductsPage from './features/pages/productsPage/ProductsPage.tsx';
 import SingleProduct from './features/pages/singleProduct/SingleProduct.tsx';
-import PaymentForm from './features/paymentForm/paymentForm.tsx';
+import PaymentForm from './features/paymentForm/PaymentForm.tsx';
 
 function App() {
     return (
