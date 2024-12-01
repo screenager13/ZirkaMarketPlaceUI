@@ -1,32 +1,46 @@
 import { createTheme } from '@mui/material';
+import { ThemeMode } from '../api/theme/themeSlice.ts';
 
-export const theme = createTheme({
-    colorSchemes: {
-        dark: {
+export const createCustomTheme = (mode: ThemeMode) => {
+    const colorSchemes = {
+        light: {
             palette: {
                 primary: {
-                    main: '#000000',
+                    main: '#ffffff',
                 },
                 secondary: {
                     main: '#52057B',
                 },
                 background: {
-                    default: '#494949',
+                    default: 'white',
                 },
             },
         },
-        // dark: {
-        //     palette: {
-        //         primary: {
-        //             main: '#D6C0B3',
-        //         },
-        //         secondary: {
-        //             main: '#AB886D',
-        //         },
-        //         background: {
-        //             default: '#686868',
-        //         },
-        //     },
-        // },
-    },
-});
+        dark: {
+            palette: {
+                primary: {
+                    main: '#1E1E1E',
+                    textContrast: '#ffffff',
+                },
+                secondary: {
+                    main: '#533859',
+                },
+                background: {
+                    default: '#121212',
+                    textContrast: '#ffffff',
+                },
+                text: {
+                    primary: '#ffffff',
+                    secondary: '#d8d8d8',
+                },
+            },
+        },
+    };
+
+    return createTheme({
+        ...colorSchemes[mode],
+        typography: {
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        },
+    });
+};

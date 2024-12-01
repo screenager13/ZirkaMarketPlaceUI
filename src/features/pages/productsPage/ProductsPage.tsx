@@ -8,7 +8,6 @@ const ProductsPage = () => {
         <Container
             maxWidth={'lg'}
             sx={{
-                backgroundColor: '#272727',
                 minHeight: '100vh',
                 height: 'auto',
                 pt: { xs: 9, sm: 10 },
