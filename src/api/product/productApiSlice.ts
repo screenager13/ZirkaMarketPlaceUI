@@ -10,6 +10,20 @@ export const productApiSlice = api.injectEndpoints({
             }),
             providesTags: ['Product'],
         }),
+        getNewProducts: builder.query<Product[], void>({
+            query: () => ({
+                url: '/products/new-products',
+                method: 'get',
+            }),
+            providesTags: ['Product'],
+        }),
+        getBestSellers: builder.query<Product[], void>({
+            query: () => ({
+                url: '/products/bestsellers',
+                method: 'get',
+            }),
+            providesTags: ['Product'],
+        }),
         postProduct: builder.mutation<void, ProductForm>({
             query: (credentials) => ({
                 url: '/products',
@@ -21,4 +35,9 @@ export const productApiSlice = api.injectEndpoints({
     }),
 });
 
-export const { useGetProductsQuery, usePostProductMutation } = productApiSlice;
+export const {
+    useGetProductsQuery,
+    usePostProductMutation,
+    useGetBestSellersQuery,
+    useGetNewProductsQuery,
+} = productApiSlice;

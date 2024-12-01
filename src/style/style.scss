@@ -6,6 +6,12 @@ html {
 }
 html, body {
   min-height: 100vh;
+
+
+}
+body:after{
+  background-image: url("../../public/endless-constellation.svg");
+  filter: blur(822px);
 }
 *, *:before, *:after {
   font-family: "Roboto", sans-serif;

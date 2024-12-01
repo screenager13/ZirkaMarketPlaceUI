@@ -26,6 +26,7 @@ const ProductsListItem = ({
                     minHeight: '240px',
                     p: 3,
                     borderRadius: 3,
+                    // border: 1,
                     gap: 1,
                     width: 250,
                     // Faster transition for smoother effect
@@ -48,8 +49,13 @@ const ProductsListItem = ({
                 >
                     <Box sx={{ alignItems: 'center', display: 'flex' }}>
                         <CardMedia
+                            component="img"
                             image={`${photoUrl}`}
-                            sx={{ width: 200, height: 200 }}
+                            sx={{
+                                width: 200,
+                                height: 200,
+                                objectFit: 'contain',
+                            }}
                         />
                     </Box>
                     <Typography variant="h5">{`${name}`}</Typography>

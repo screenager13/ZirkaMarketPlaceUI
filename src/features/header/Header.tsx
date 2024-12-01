@@ -6,10 +6,8 @@ import {
     Button,
     ButtonGroup,
     Container,
-    Icon,
     IconButton,
     InputBase,
-    MenuItem,
     styled,
     Toolbar,
     Tooltip,
@@ -18,10 +16,19 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
-import Menu from '@mui/material/Menu';
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
-const Header = () => {
+import React, { ChangeEvent, useState } from 'react';
+
+import Brightness4Icon from '@mui/icons-material/Brightness4'; // Moon icon
+import Brightness7Icon from '@mui/icons-material/Brightness7'; // Sun icon
+
+type OnThemeToggle = (event: React.MouseEvent<HTMLElement>) => void;
+interface Props {
+    onThemeToggle: OnThemeToggle;
+    isDarkMode: boolean;
+}
+
+const Header = ({ onThemeToggle, isDarkMode }: Props) => {
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
@@ -36,6 +43,7 @@ const Header = () => {
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
+        border: `1px solid ${alpha(theme.palette.common.black, 0.2)}`,
         backgroundColor: alpha(theme.palette.common.white, 0.15),
         '&:hover': {
             backgroundColor: alpha(theme.palette.common.white, 0.25),
@@ -61,7 +69,6 @@ const Header = () => {
         width: '100%',
         '& .MuiInputBase-input': {
             padding: theme.spacing(2, 1, 2, 0),
-            // vertical padding + font size from searchIcon
             paddingLeft: `calc(1em + ${theme.spacing(4)})`,
             transition: theme.transitions.create('width'),
             [theme.breakpoints.up('sm')]: {
@@ -143,6 +150,17 @@ const Header = () => {
                             <PersonIcon fontSize="inherit" />
                         </IconButton>
                     </Link>
+                    <IconButton onClick={onThemeToggle} size="large">
+                        {isDarkMode ? (
+                            <Tooltip title="Dark Mode">
+                                <Brightness4Icon sx={{ color: 'white' }} />
+                            </Tooltip>
+                        ) : (
+                            <Tooltip title="Light Mode">
+                                <Brightness7Icon sx={{ color: 'orange' }} />
+                            </Tooltip>
+                        )}
+                    </IconButton>
                 </Toolbar>
             </Container>
         </AppBar>
