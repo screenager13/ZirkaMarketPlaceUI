@@ -23,7 +23,6 @@ function App() {
         () => createCustomTheme(currentThemeMode),
         [currentThemeMode],
     );
-    console.log(currentThemeMode);
     const handleThemeToggle = () => {
         dispatch(toggleTheme());
     };

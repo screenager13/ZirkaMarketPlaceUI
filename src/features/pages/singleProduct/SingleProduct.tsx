@@ -120,8 +120,7 @@ const SingleProductPage = () => {
                             variant="body1"
                             sx={{ color: 'text.secondary', mt: 2 }}
                         >
-                            Opis:{' '}
-                            {product.description + 'Lorem ipsum Lorem ipsum '}
+                            Opis: {product.description}
                         </Typography>
                     </Box>
                 </Box>
