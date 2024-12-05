@@ -11,6 +11,8 @@ import Header from './features/header/Header.tsx';
 import ProductsPage from './features/pages/productsPage/ProductsPage.tsx';
 import SingleProduct from './features/pages/singleProduct/SingleProduct.tsx';
 import PaymentForm from './features/paymentForm/PaymentForm.tsx';
+import SignIn from './features/pages/singIn/SingIn.tsx';
+import SingUp from './features/pages/singUp/SingUp.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTheme, toggleTheme } from './api/theme/themeSlice.ts';
 import { createCustomTheme } from './style/ColorTheme.ts';
@@ -59,6 +61,14 @@ function App() {
                             <Route
                                 path={'/payment'}
                                 element={<PaymentForm />}
+                            />
+                            <Route
+                                path={'/login'}
+                                element={<SignIn />}
+                            />
+                            <Route
+                                path={'/register'}
+                                element={<SingUp />}
                             />
                         </Routes>
                         {/*<Footer/>*/}
