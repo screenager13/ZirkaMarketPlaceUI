@@ -7,12 +7,17 @@ export const createCustomTheme = (mode: ThemeMode) => {
             palette: {
                 primary: {
                     main: '#ffffff',
+                    textContrast: '#000000',
                 },
                 secondary: {
                     main: '#52057B',
                 },
                 background: {
-                    default: 'white',
+                    default: '#f8f8f8',
+                },
+                text: {
+                    primary: '#000000',
+                    secondary: '#222222',
                 },
             },
         },
