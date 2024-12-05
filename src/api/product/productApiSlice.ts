@@ -10,6 +10,13 @@ export const productApiSlice = api.injectEndpoints({
             }),
             providesTags: ['Product'],
         }),
+        getSingleProduct: builder.query<Product, string>({
+            query: (id) => ({
+                url: `/products/${id}`,
+                method: 'get',
+            }),
+            providesTags: ['Product'],
+        }),
         getNewProducts: builder.query<Product[], void>({
             query: () => ({
                 url: '/products/new-products',
@@ -37,6 +44,7 @@ export const productApiSlice = api.injectEndpoints({
 
 export const {
     useGetProductsQuery,
+    useGetSingleProductQuery,
     usePostProductMutation,
     useGetBestSellersQuery,
     useGetNewProductsQuery,

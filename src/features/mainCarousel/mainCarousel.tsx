@@ -4,10 +4,13 @@ import ProductsListItem from '../productsListItem/ProductsListItem';
 import { Product } from '../../types/product.ts';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { useGetBestSellersQuery } from '../../api/product/productApiSlice.ts';
 
-const TopSellers = () => {
-    const { data } = useGetBestSellersQuery();
+type Props = {
+    title: string;
+    func: any;
+};
+const MainCarousel = ({ title, func }: Props) => {
+    const { data } = func();
     const products: Product[] | undefined = data;
     // const products: Product[] = [
     //     {
@@ -142,7 +145,7 @@ const TopSellers = () => {
                     marginBottom: 1,
                 }}
             >
-                Top Sellers
+                {`${title}`}
             </Typography>
             <Box
                 sx={{
@@ -255,4 +258,4 @@ const TopSellers = () => {
     );
 };
 
-export default TopSellers;
+export default MainCarousel;

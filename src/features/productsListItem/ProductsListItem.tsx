@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Product } from '../../types/product.ts';
 import { Box, Card, CardMedia, Rating, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 const ProductsListItem = ({
     id,
@@ -60,7 +61,12 @@ const ProductsListItem = ({
                     </Box>
                     <Typography variant="h5">{`${name}`}</Typography>
 
-                    <Rating name="rating" value={rating} readOnly />
+                    <Rating
+                        emptyIcon={<StarBorderIcon sx={{ color: 'gray' }} />}
+                        name="rating"
+                        value={rating}
+                        readOnly
+                    />
                     <Typography
                         variant="subtitle1"
                         sx={{ color: 'text.secondary' }}
