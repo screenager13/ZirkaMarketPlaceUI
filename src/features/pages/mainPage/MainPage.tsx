@@ -1,5 +1,9 @@
 import { Container } from '@mui/material';
-import TopSellers from '../../topSellers/TopSellers';
+import MainCarousel from '../../mainCarousel/mainCarousel.tsx';
+import {
+    useGetBestSellersQuery,
+    useGetNewProductsQuery,
+} from '../../../api/product/productApiSlice.ts';
 
 const MainPage = () => {
     return (
@@ -14,7 +18,11 @@ const MainPage = () => {
                 gap: { xs: 0, md: 2 },
             }}
         >
-            <TopSellers />
+            <MainCarousel title={'Top sellers'} func={useGetBestSellersQuery} />
+            <MainCarousel
+                title={'New products'}
+                func={useGetNewProductsQuery}
+            />
         </Container>
     );
 };
