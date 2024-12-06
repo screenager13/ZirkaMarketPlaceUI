@@ -22,6 +22,7 @@ export const createCustomTheme = (mode: ThemeMode) => {
             },
         },
         dark: {
+            mode: 'dark',
             palette: {
                 primary: {
                     main: '#1E1E1E',
@@ -33,6 +34,7 @@ export const createCustomTheme = (mode: ThemeMode) => {
                 background: {
                     default: '#121212',
                     textContrast: '#ffffff',
+                    paper: '#424242',
                 },
                 text: {
                     primary: '#ffffff',
