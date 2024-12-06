@@ -17,16 +17,6 @@ const SingleProductPage = () => {
     const { data } = useGetSingleProductQuery(id as string);
     const product: Product | undefined = data;
 
-    // const product = {
-    //     id: 'kindOfId',
-    //     name: 'Zirka',
-    //     description: 'Best Chess Player',
-    //     rating: 2.1,
-    //     price: 100,
-    //     photoUrl: '',
-    //     availableAmount: 1,
-    // };
-
     if (!product) {
         return (
             <Box
@@ -127,7 +117,13 @@ const SingleProductPage = () => {
                 <Button
                     variant="contained"
                     color="secondary"
-                    sx={{ mt: 3, height: 45, width: '100%', maxWidth: 400 }}
+                    sx={{
+                        borderRadius: 3,
+                        mt: 3,
+                        height: 45,
+                        width: '100%',
+                        maxWidth: 400,
+                    }}
                 >
                     Add to Cart
                 </Button>
