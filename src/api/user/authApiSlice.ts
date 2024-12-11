@@ -35,8 +35,8 @@ export const authApi = api.injectEndpoints({
             providesTags: ['User'],
         }),
         getUser: builder.query({
-            query: (nickname) => ({
-                url: `/users/${nickname}`,
+            query: (id) => ({
+                url: `/users/${id}`,
                 method: 'GET',
             }),
         }),

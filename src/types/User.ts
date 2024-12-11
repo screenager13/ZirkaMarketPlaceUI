@@ -3,6 +3,5 @@ export type User = {
     email: string;
     firstName: string;
     lastName: string;
-    age: number;
     role: 0 | 1 | 2;
 };
