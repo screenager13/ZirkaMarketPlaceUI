@@ -145,7 +145,7 @@ const Header = ({ onThemeToggle, isDarkMode }: Props) => {
                             <ShoppingCartIcon fontSize="inherit" />
                         </IconButton>
                     </Link>
-                    <Link to={'/login'}>
+                    <Link to={'/dashboard'}>
                         <IconButton aria-label="profile" size="large">
                             <PersonIcon fontSize="inherit" />
                         </IconButton>
