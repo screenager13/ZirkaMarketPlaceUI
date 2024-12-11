@@ -13,6 +13,7 @@ import SingleProduct from './features/pages/singleProduct/SingleProduct.tsx';
 import PaymentForm from './features/paymentForm/PaymentForm.tsx';
 import SignIn from './features/pages/singIn/SingIn.tsx';
 import SingUp from './features/pages/singUp/SingUp.tsx';
+import Dashboard from './features/pages/dashBoard/DashBoard.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTheme, toggleTheme } from './api/theme/themeSlice.ts';
 import { createCustomTheme } from './style/ColorTheme.ts';
@@ -64,8 +65,15 @@ function App() {
                                 path={'/payment'}
                                 element={<PaymentForm />}
                             />
-                            <Route path={'/login'} element={<SignIn />} />
-                            <Route path={'/register'} element={<SingUp />} />
+                            <Route
+                                path={'/login'}
+                                element={<SignIn />}
+                            />
+                            <Route
+                                path={'/register'}
+                                element={<SingUp />}
+                            />
+                            <Route path="/dashboard" element={<Dashboard />} />
                         </Routes>
                         {/*<Footer/>*/}
                     </Container>
