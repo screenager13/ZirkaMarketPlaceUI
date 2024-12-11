@@ -552,7 +552,6 @@ const Dashboard: React.FC = () => {
                                     </MenuItem>
                                 </TextField>
                             </Box>
-
                             <Box
                                 sx={{
                                     display: 'flex',
