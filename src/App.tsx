@@ -17,6 +17,7 @@ import Dashboard from './features/pages/dashBoard/DashBoard.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTheme, toggleTheme } from './api/theme/themeSlice.ts';
 import { createCustomTheme } from './style/ColorTheme.ts';
+import Cart from './features/pages/cart/Cart.tsx';
 
 function App() {
     const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function App() {
                         />
                         <Routes>
                             <Route path={'/'} element={<MainPage />} />
+                            <Route path={'/cart'} element={<Cart />} />
                             <Route
                                 path={'/products'}
                                 element={<ProductsPage />}

@@ -44,7 +44,7 @@ const SingUp = () => {
 
     const handleSubmitRegister = async (data: RegisterUser) => {
         try {
-            await registration({ ...data, age: 20 }).unwrap();
+            await registration(data).unwrap();
             alert('Registration successful! Please log in.');
             navigate('/login');
         } catch (err) {
