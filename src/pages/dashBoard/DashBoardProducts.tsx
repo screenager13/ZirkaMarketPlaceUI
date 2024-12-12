@@ -1,16 +1,12 @@
 import React from 'react';
-import { Box, Container, Divider } from '@mui/material';
+import { Box, Divider } from '@mui/material';
 import AddProductForm from '../../features/addProductForm/AddProductForm.tsx';
 import ProductsList from '../../features/productsList/ProductsList.tsx';
 
-const ProductsPage = () => {
+const DashBoardProducts = () => {
     return (
-        <Container
-            maxWidth={'lg'}
+        <Box
             sx={{
-                minHeight: '100vh',
-                height: 'auto',
-                pt: { xs: 9, sm: 10 },
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
@@ -29,8 +25,8 @@ const ProductsPage = () => {
             <Box>
                 <AddProductForm />
             </Box>
-        </Container>
+        </Box>
     );
 };
 
-export default ProductsPage;
+export default DashBoardProducts;
