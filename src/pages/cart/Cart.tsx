@@ -1,6 +1,6 @@
 import { Box, Container } from '@mui/material';
-import { Product } from '../../../types/product.ts';
-import SingleProductItem from '../../singleProductItem/SingleProductItem.tsx';
+import { Product } from '../../types/product.ts';
+import SingleProductItem from '../../features/singleProductItem/SingleProductItem.tsx';
 
 const MainPage = () => {
     const products: Product[] | null = [

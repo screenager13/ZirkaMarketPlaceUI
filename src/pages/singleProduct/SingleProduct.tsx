@@ -8,10 +8,10 @@ import {
     Button,
     Container,
 } from '@mui/material';
-import { useGetSingleProductQuery } from '../../../api/product/productApiSlice.ts';
-import { Product } from '../../../types/product.ts';
+import { useGetSingleProductQuery } from '../../api/product/productApiSlice.ts';
+import { Product } from '../../types/product.ts';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import SingleProductItem from '../../singleProductItem/SingleProductItem.tsx';
+import SingleProductItem from '../../features/singleProductItem/SingleProductItem.tsx';
 
 const SingleProductPage = () => {
     const { id } = useParams<{ id: string }>();

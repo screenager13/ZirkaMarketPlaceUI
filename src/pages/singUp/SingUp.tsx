@@ -14,8 +14,8 @@ import {
     FormControl,
 } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import { useRegistrationMutation } from '../../../api/user/authApiSlice.ts';
-import { User } from '../../../types/User.ts';
+import { useRegistrationMutation } from '../../api/user/authApiSlice.ts';
+import { User } from '../../types/User.ts';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 export type RegisterUser = User & {
     password: string;

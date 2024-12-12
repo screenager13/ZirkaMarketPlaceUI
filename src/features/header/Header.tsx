@@ -5,7 +5,9 @@ import {
     Box,
     Button,
     ButtonGroup,
+    CircularProgress,
     Container,
+    Dialog,
     IconButton,
     InputBase,
     styled,
@@ -17,10 +19,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 
 import Brightness4Icon from '@mui/icons-material/Brightness4'; // Moon icon
-import Brightness7Icon from '@mui/icons-material/Brightness7'; // Sun icon
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { selectRole } from '../../api/user/userSlice.ts';
+import { useSelector } from 'react-redux';
+import { useGetCategoriesQuery } from '../../api/category/categoryApiSlice.ts';
+import { Category } from '../../types/Category.ts'; // Sun icon
 
 type OnThemeToggle = (event: React.MouseEvent<HTMLElement>) => void;
 interface Props {
@@ -29,16 +35,19 @@ interface Props {
 }
 
 const Header = ({ onThemeToggle, isDarkMode }: Props) => {
-    const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElUser(event.currentTarget);
-    };
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
+    const role: 0 | 1 | 2 | null = useSelector(selectRole);
+
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
     };
 
-    // MUST BE TAKEN FROM STORE
-    const isAuth = false;
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const { data } = useGetCategoriesQuery();
+    const categories: Category[] | undefined = data;
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -121,6 +130,9 @@ const Header = ({ onThemeToggle, isDarkMode }: Props) => {
                         </ButtonGroup>
                     </Link>
                     <Button
+                        onClick={handleClickOpen}
+                        aria-controls="categories-menu"
+                        aria-haspopup="true"
                         variant="contained"
                         color="secondary"
                         sx={{
@@ -130,6 +142,46 @@ const Header = ({ onThemeToggle, isDarkMode }: Props) => {
                     >
                         Kategorie
                     </Button>
+                    <Dialog
+                        open={open}
+                        onClose={handleClose}
+                        sx={{ div: { alignItems: 'flex-start' } }}
+                    >
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                gap: 1,
+                                padding: 2,
+                            }}
+                        >
+                            {!categories ? (
+                                <CircularProgress />
+                            ) : (
+                                categories.map((category) => (
+                                    <Link
+                                        to={`/category/${category.id}`}
+                                        key={category.id}
+                                    >
+                                        <Button
+                                            variant="outlined"
+                                            sx={{
+                                                padding: 1,
+                                                color: 'white',
+                                                border: '1px solid white',
+                                            }}
+                                            key={category.id}
+                                            onClick={handleClose}
+                                        >
+                                            <Typography>
+                                                {category.name}
+                                            </Typography>
+                                        </Button>
+                                    </Link>
+                                ))
+                            )}
+                        </Box>
+                    </Dialog>
                     <Search sx={{ flexGrow: 1 }}>
                         <SearchIconWrapper>
                             <SearchIcon />
@@ -145,7 +197,7 @@ const Header = ({ onThemeToggle, isDarkMode }: Props) => {
                             <ShoppingCartIcon fontSize="inherit" />
                         </IconButton>
                     </Link>
-                    <Link to={'/dashboard'}>
+                    <Link to={role ? '/dashboard' : '/login'}>
                         <IconButton aria-label="profile" size="large">
                             <PersonIcon fontSize="inherit" />
                         </IconButton>
