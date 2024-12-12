@@ -1,9 +1,9 @@
 import { Container } from '@mui/material';
-import MainCarousel from '../../mainCarousel/mainCarousel.tsx';
+import MainCarousel from '../../features/mainCarousel/mainCarousel.tsx';
 import {
     useGetBestSellersQuery,
     useGetNewProductsQuery,
-} from '../../../api/product/productApiSlice.ts';
+} from '../../api/product/productApiSlice.ts';
 
 const MainPage = () => {
     return (

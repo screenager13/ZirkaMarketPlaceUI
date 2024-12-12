@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Container, Divider } from '@mui/material';
-import AddProductForm from '../../addProductForm/AddProductForm.tsx';
-import ProductsList from '../../productsList/ProductsList.tsx';
+import AddProductForm from '../../features/addProductForm/AddProductForm.tsx';
+import ProductsList from '../../features/productsList/ProductsList.tsx';
 
 const ProductsPage = () => {
     return (

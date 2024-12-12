@@ -9,7 +9,7 @@ import {
     Divider,
 } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import { useLoginMutation } from '../../../api/user/authApiSlice.ts';
+import { useLoginMutation } from '../../api/user/authApiSlice.ts';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 type LoginForm = {

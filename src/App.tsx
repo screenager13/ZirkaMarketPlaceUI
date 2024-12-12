@@ -6,22 +6,24 @@ import {
     CssBaseline,
     ThemeProvider,
 } from '@mui/material';
-import MainPage from './features/pages/mainPage/MainPage.tsx';
+import MainPage from './pages/mainPage/MainPage.tsx';
 import Header from './features/header/Header.tsx';
-import ProductsPage from './features/pages/productsPage/ProductsPage.tsx';
-import SingleProduct from './features/pages/singleProduct/SingleProduct.tsx';
+import ProductsPage from './pages/productsPage/ProductsPage.tsx';
+import SingleProduct from './pages/singleProduct/SingleProduct.tsx';
 import PaymentForm from './features/paymentForm/PaymentForm.tsx';
-import SignIn from './features/pages/singIn/SingIn.tsx';
-import SingUp from './features/pages/singUp/SingUp.tsx';
-import Dashboard from './features/pages/dashBoard/DashBoard.tsx';
+import SignIn from './pages/singIn/SingIn.tsx';
+import SingUp from './pages/singUp/SingUp.tsx';
+import Dashboard from './pages/dashBoard/DashBoard.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTheme, toggleTheme } from './api/theme/themeSlice.ts';
 import { createCustomTheme } from './style/ColorTheme.ts';
-import Cart from './features/pages/cart/Cart.tsx';
+import Cart from './pages/cart/Cart.tsx';
+import { useRefreshQuery } from './api/user/authApiSlice.ts';
 
 function App() {
+    useRefreshQuery();
     const dispatch = useDispatch();
-    const currentThemeMode = useSelector(selectTheme); // Get the current theme mode from Redux store
+    const currentThemeMode = useSelector(selectTheme);
 
     const theme = useMemo(
         () => createCustomTheme(currentThemeMode),
@@ -65,14 +67,8 @@ function App() {
                                 path={'/payment'}
                                 element={<PaymentForm />}
                             />
-                            <Route
-                                path={'/login'}
-                                element={<SignIn />}
-                            />
-                            <Route
-                                path={'/register'}
-                                element={<SingUp />}
-                            />
+                            <Route path={'/login'} element={<SignIn />} />
+                            <Route path={'/register'} element={<SingUp />} />
                             <Route path="/dashboard" element={<Dashboard />} />
                         </Routes>
                         {/*<Footer/>*/}

@@ -1,7 +1,7 @@
 import { api } from '../api';
 import { User } from '../../types/User.ts';
 import { AuthResponse } from '../../types/AuthResponse.ts';
-import { RegisterUser } from '../../features/pages/singUp/SingUp.tsx';
+import { RegisterUser } from '../../pages/singUp/SingUp.tsx';
 export const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
         login: builder.mutation<
