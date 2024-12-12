@@ -1,6 +1,16 @@
 import { createTheme } from '@mui/material';
 import { ThemeMode } from '../api/theme/themeSlice.ts';
-
+import { BreakpointOverrides } from '@mui/material/styles';
+declare module '@mui/material/styles' {
+    interface BreakpointOverrides {
+        xs: true; // removes the `xs` breakpoint
+        sm: true;
+        md: true;
+        lg: true;
+        xl: true;
+        custom575: true;
+    }
+}
 export const createCustomTheme = (mode: ThemeMode) => {
     const colorSchemes = {
         light: {
@@ -48,6 +58,16 @@ export const createCustomTheme = (mode: ThemeMode) => {
         ...colorSchemes[mode],
         typography: {
             fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        },
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 900,
+                lg: 1200,
+                xl: 1536,
+                custom575: 575,
+            },
         },
     });
 };

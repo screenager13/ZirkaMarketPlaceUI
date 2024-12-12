@@ -19,6 +19,7 @@ import { selectTheme, toggleTheme } from './api/theme/themeSlice.ts';
 import { createCustomTheme } from './style/ColorTheme.ts';
 import Cart from './pages/cart/Cart.tsx';
 import { useRefreshQuery } from './api/user/authApiSlice.ts';
+import CategoryPage from './pages/categoryPage/CategoryPage.tsx';
 
 function App() {
     useRefreshQuery();
@@ -66,6 +67,10 @@ function App() {
                             <Route
                                 path={'/payment'}
                                 element={<PaymentForm />}
+                            />
+                            <Route
+                                path={'/category/:id'}
+                                element={<CategoryPage />}
                             />
                             <Route path={'/login'} element={<SignIn />} />
                             <Route path={'/register'} element={<SingUp />} />

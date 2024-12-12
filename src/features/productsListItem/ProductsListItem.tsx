@@ -4,16 +4,11 @@ import { Box, Card, CardMedia, Rating, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
-const ProductsListItem = ({
-    id,
-    name,
-    description,
-    rating,
-    price,
-    photoUrl,
-    availableAmount,
-}: Product) => {
+const ProductsListItem = ({ product }: { product: Product }) => {
     const [isHovered, setIsHovered] = useState(false);
+
+    const { id, name, description, rating, price, photoUrl, availableAmount } =
+        product;
 
     return (
         <Link to={`/products/${id}`}>
