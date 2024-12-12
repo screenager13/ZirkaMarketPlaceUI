@@ -12,108 +12,6 @@ type Props = {
 const MainCarousel = ({ title, func }: Props) => {
     const { data } = func();
     const products: Product[] | undefined = data;
-    // const products: Product[] = [
-    //     {
-    //         id: 'kindOfId1',
-    //         name: 'Zirka 1',
-    //         description: 'Best Chess Player',
-    //         rating: 4,
-    //         price: 100,
-    //         photoUrl:
-    //             'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRmpUug5APmUWRjrotX3x8t5MotsekC8IhUU7sQBS4R8Y8YCwD5wWk7z_FRV_0ZLtdmMevwQbcJNbcr7cpNk0kDpbwFy5Hk3NDW_EUx_0Xh5DDciJwLx6P64w',
-    //         availableAmount: 1,
-    //     },
-    //     {
-    //         id: 'kindOfId2',
-    //         name: 'Zirka 2',
-    //         description: 'Best Chess Player with long description',
-    //         rating: 5,
-    //         price: 100,
-    //         photoUrl:
-    //             'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRmpUug5APmUWRjrotX3x8t5MotsekC8IhUU7sQBS4R8Y8YCwD5wWk7z_FRV_0ZLtdmMevwQbcJNbcr7cpNk0kDpbwFy5Hk3NDW_EUx_0Xh5DDciJwLx6P64w',
-    //         availableAmount: 1,
-    //     },
-    //     {
-    //         id: 'kindOfId3',
-    //         name: 'Zirka 3',
-    //         description: 'Best Chess Player',
-    //         rating: 3.5,
-    //         price: 100,
-    //         photoUrl:
-    //             'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRmpUug5APmUWRjrotX3x8t5MotsekC8IhUU7sQBS4R8Y8YCwD5wWk7z_FRV_0ZLtdmMevwQbcJNbcr7cpNk0kDpbwFy5Hk3NDW_EUx_0Xh5DDciJwLx6P64w',
-    //         availableAmount: 1,
-    //     },
-    //     {
-    //         id: 'kindOfId4',
-    //         name: 'Zirka 4',
-    //         description: 'Best Chess Player',
-    //         rating: 2.1,
-    //         price: 100,
-    //         photoUrl:
-    //             'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRmpUug5APmUWRjrotX3x8t5MotsekC8IhUU7sQBS4R8Y8YCwD5wWk7z_FRV_0ZLtdmMevwQbcJNbcr7cpNk0kDpbwFy5Hk3NDW_EUx_0Xh5DDciJwLx6P64w',
-    //         availableAmount: 1,
-    //     },
-    //     {
-    //         id: 'kindOfId5',
-    //         name: 'Zirka 5',
-    //         description: 'Best Chess Player',
-    //         rating: 4.5,
-    //         price: 100,
-    //         photoUrl:
-    //             'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRmpUug5APmUWRjrotX3x8t5MotsekC8IhUU7sQBS4R8Y8YCwD5wWk7z_FRV_0ZLtdmMevwQbcJNbcr7cpNk0kDpbwFy5Hk3NDW_EUx_0Xh5DDciJwLx6P64w',
-    //         availableAmount: 1,
-    //     },
-    //     {
-    //         id: 'kindOfId6',
-    //         name: 'Zirka 6',
-    //         description: 'Best Chess Player',
-    //         rating: 3,
-    //         price: 100,
-    //         photoUrl:
-    //             'https://th.bing.com/th/id/R.7be23b31dc670187b0deae92352607c0?rik=b06SjbjBNJI%2bdg&pid=ImgRaw&r=0',
-    //         availableAmount: 1,
-    //     },
-    //     {
-    //         id: 'kindOfId7',
-    //         name: 'Zirka 7',
-    //         description: 'Best Chess Player',
-    //         rating: 3.8,
-    //         price: 100,
-    //         photoUrl:
-    //             'https://th.bing.com/th/id/R.7be23b31dc670187b0deae92352607c0?rik=b06SjbjBNJI%2bdg&pid=ImgRaw&r=0',
-    //         availableAmount: 1,
-    //     },
-    //     {
-    //         id: 'kindOfId8',
-    //         name: 'Zirka 8',
-    //         description: 'Best Chess Player',
-    //         rating: 4.2,
-    //         price: 100,
-    //         photoUrl:
-    //             'https://th.bing.com/th/id/R.7be23b31dc670187b0deae92352607c0?rik=b06SjbjBNJI%2bdg&pid=ImgRaw&r=0',
-    //         availableAmount: 1,
-    //     },
-    //     {
-    //         id: 'kindOfId9',
-    //         name: 'Zirka 9',
-    //         description: 'Best Chess Player',
-    //         rating: 4.2,
-    //         price: 100,
-    //         photoUrl:
-    //             'https://th.bing.com/th/id/R.7be23b31dc670187b0deae92352607c0?rik=b06SjbjBNJI%2bdg&pid=ImgRaw&r=0',
-    //         availableAmount: 1,
-    //     },
-    //     {
-    //         id: 'kindOfId10',
-    //         name: 'Zirka 10',
-    //         description: 'Best Chess Player',
-    //         rating: 4.2,
-    //         price: 100,
-    //         photoUrl:
-    //             'https://th.bing.com/th/id/R.7be23b31dc670187b0deae92352607c0?rik=b06SjbjBNJI%2bdg&pid=ImgRaw&r=0',
-    //         availableAmount: 1,
-    //     },
-    // ];
 
     const maxVisible = 5;
     const [visibleIndex, setVisibleIndex] = useState(0);
@@ -196,36 +94,18 @@ const MainCarousel = ({ title, func }: Props) => {
                     }}
                 >
                     {products &&
-                        products.map(
-                            ({
-                                id,
-                                name,
-                                description,
-                                rating,
-                                price,
-                                photoUrl,
-                                availableAmount,
-                            }) => (
-                                <Box
-                                    key={id}
-                                    sx={{
-                                        width: `calc(100% / ${maxVisible})`,
-                                        padding: '0 4px',
-                                        boxSizing: 'border-box',
-                                    }}
-                                >
-                                    <ProductsListItem
-                                        id={id}
-                                        name={name}
-                                        description={description}
-                                        rating={rating}
-                                        price={price}
-                                        photoUrl={photoUrl}
-                                        availableAmount={availableAmount}
-                                    />
-                                </Box>
-                            ),
-                        )}
+                        products.map((product) => (
+                            <Box
+                                key={product.id}
+                                sx={{
+                                    width: `calc(100% / ${maxVisible})`,
+                                    padding: '0 4px',
+                                    boxSizing: 'border-box',
+                                }}
+                            >
+                                <ProductsListItem product={product} />
+                            </Box>
+                        ))}
                 </Box>
 
                 {totalProducts > maxVisible && (

@@ -10,7 +10,15 @@ export const categoryApiSlice = api.injectEndpoints({
             }),
             providesTags: ['Category'],
         }),
+        getSingleCategory: builder.query<Category, string>({
+            query: (id: string) => ({
+                url: `/categories/${id}`,
+                method: 'get',
+            }),
+            providesTags: ['Category'],
+        }),
     }),
 });
 
-export const { useGetCategoriesQuery } = categoryApiSlice;
+export const { useGetCategoriesQuery, useGetSingleCategoryQuery } =
+    categoryApiSlice;
