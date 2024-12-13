@@ -13,28 +13,67 @@ import {
 } from '@mui/material';
 import { ProductForm } from '../../types/product.ts';
 import { usePostProductMutation } from '../../api/product/productApiSlice.ts';
-
+import { useSelector } from 'react-redux';
+import { selectId } from '../../api/user/userSlice.ts';
 const AddProductForm = () => {
-    const { handleSubmit, control, reset } = useForm<ProductForm>({
+    const id = useSelector(selectId);
+    const { handleSubmit, control } = useForm<ProductForm>({
         defaultValues: {
-            name: '',
-            description: '',
-            category: 0,
-            price: 0,
-            photoUrl: '',
-            availableAmount: 0,
+            Name: '',
+            Description: '',
+            CategoryId: '5f6bf0d9-954e-4670-a5d0-d53419af16f5',
+            Price: 0,
+            PhotoUrl: '',
+            AvailableAmount: 0,
+            UserId: id as string,
         },
     });
 
     const [postProduct] = usePostProductMutation();
+    const fileInput = document.querySelector(
+        'input[type="file"]',
+    ) as HTMLInputElement;
+    const onSubmit = async (otherFields: Omit<ProductForm, 'PhotoUrl'>) => {
+        const file = fileInput.files?.[0];
+        if (!file) {
+            console.error('No file selected');
+            return;
+        }
 
-    const onSubmit = async (data: ProductForm) => {
         try {
-            await postProduct(data).unwrap();
-            console.log('Product added successfully');
-            reset();
-        } catch (err) {
-            console.error('Failed to add product:', err);
+            const toBase64 = (file: File): Promise<string> =>
+                new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve(reader.result as string);
+                    reader.onerror = (error) => reject(error);
+                });
+
+            const base64String = await toBase64(file);
+
+            const productData: ProductForm = {
+                ...otherFields,
+                PhotoUrl: base64String, // Assign Base64 string here
+            };
+
+            console.log(productData);
+
+            const formData = new FormData();
+            formData.append('PhotoUrl', productData.PhotoUrl);
+            formData.append('Name', productData.Name);
+            formData.append('Description', productData.Description);
+            formData.append('CategoryId', productData.CategoryId);
+            formData.append('UserId', productData.UserId);
+            formData.append(
+                'AvailableAmount',
+                productData.AvailableAmount.toString(),
+            );
+            formData.append('Price', productData.Price.toString());
+
+            await postProduct(formData).unwrap();
+            console.log('Product created successfully');
+        } catch (error) {
+            console.error('Error creating product:', error);
         }
     };
 
@@ -65,7 +104,7 @@ const AddProductForm = () => {
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <Controller
-                    name="name"
+                    name="Name"
                     control={control}
                     rules={{ required: 'Nazwa jest wymagana' }}
                     render={({ field, fieldState }) => (
@@ -86,7 +125,7 @@ const AddProductForm = () => {
                     )}
                 />
                 <Controller
-                    name="description"
+                    name="Description"
                     control={control}
                     rules={{ required: 'Opis jest wymagany' }}
                     render={({ field, fieldState }) => (
@@ -109,7 +148,7 @@ const AddProductForm = () => {
                     )}
                 />
                 <Controller
-                    name="category"
+                    name="CategoryId"
                     control={control}
                     rules={{ required: 'Musisz wybrac kategorie' }}
                     render={({ field, fieldState }) => (
@@ -131,14 +170,19 @@ const AddProductForm = () => {
                                     height: '33px',
                                 }}
                             >
-                                <MenuItem value={0}>Komputery</MenuItem>
-                                <MenuItem value={1}>Telefony</MenuItem>
+                                <MenuItem
+                                    value={
+                                        '5f6bf0d9-954e-4670-a5d0-d53419af16f5'
+                                    }
+                                >
+                                    Komputery
+                                </MenuItem>
                             </Select>
                         </FormControl>
                     )}
                 />
                 <Controller
-                    name="price"
+                    name="Price"
                     control={control}
                     rules={{
                         required: 'Cena jest wymagana',
@@ -166,14 +210,16 @@ const AddProductForm = () => {
                     )}
                 />
                 <Controller
-                    name="photoUrl"
+                    name="PhotoUrl"
                     control={control}
-                    rules={{ required: 'URL zdjęcia jest wymagany' }}
+                    rules={{ required: 'Zdjęcie jest wymagane' }}
                     render={({ field, fieldState }) => (
                         <TextField
+                            sx={{ input: { height: 50 } }}
+                            type={'file'}
                             color={'secondary'}
                             {...field}
-                            label="URL Zdjęcia"
+                            label="Zdjęcie"
                             fullWidth
                             margin="normal"
                             error={!!fieldState.error}
@@ -184,10 +230,12 @@ const AddProductForm = () => {
                                 },
                             }}
                         />
+                        //     <input type={'file'} {...field} error={!!fieldState.error}
+                        // helperText={fieldState.error?.message}/>
                     )}
                 />
                 <Controller
-                    name="availableAmount"
+                    name="AvailableAmount"
                     control={control}
                     rules={{
                         required: 'Ilość jest wymagana',

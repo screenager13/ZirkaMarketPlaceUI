@@ -13,10 +13,13 @@ const SingleProductItem = ({ product }: { product: Product }) => {
     const cart = useSelector(selectPaymentInfo).purchaseItemDtos;
     const dispatch = useDispatch();
     const handleAddToCart = () => {
+        if (product?.availableAmount === 0) {
+            alert('Prodult się skończył');
+        }
         if (cart.filter((elem) => elem.productId === product.id).length === 0) {
             dispatch(addProduct({ productId: product.id, quantity: 1 }));
         } else {
-            alert('This product is already in your cart');
+            alert('This product is already in your cartPage');
         }
     };
 

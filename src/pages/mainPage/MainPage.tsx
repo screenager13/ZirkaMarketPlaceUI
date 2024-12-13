@@ -19,10 +19,7 @@ const MainPage = () => {
             }}
         >
             <MainCarousel title={'Top sellers'} func={useGetBestSellersQuery} />
-            <MainCarousel
-                title={'New products'}
-                func={useGetNewProductsQuery}
-            />
+            <MainCarousel title={'Nowe towary'} func={useGetNewProductsQuery} />
         </Container>
     );
 };

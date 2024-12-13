@@ -4,6 +4,8 @@ import { Home, Logout, Person, Settings } from '@mui/icons-material';
 import { useLogoutMutation } from '../../api/user/authApiSlice.ts';
 import { useNavigate } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useSelector } from 'react-redux';
+import { selectRole } from '../../api/user/userSlice.ts';
 
 const DashBoardMenu = ({
     activeView,
@@ -14,6 +16,7 @@ const DashBoardMenu = ({
         React.SetStateAction<'home' | 'profile' | 'settings' | 'products'>
     >;
 }) => {
+    const role: 0 | 1 | 2 | null = useSelector(selectRole);
     const navigate = useNavigate();
     const [logout] = useLogoutMutation();
     const handleLogout = async () => {
@@ -35,7 +38,7 @@ const DashBoardMenu = ({
                 margin: '20px',
                 maxHeight: '410px',
                 minWidth: '231px',
-                position: "sticky",
+                position: 'sticky',
                 top: 100,
             }}
         >
@@ -169,43 +172,45 @@ const DashBoardMenu = ({
                             Ustawienia
                         </Typography>
                     </Box>
-                    <Box
-                        onClick={() => setActiveView('products')}
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            margin: '20px 0',
-                            padding: '10px',
-                            borderRadius: '8px',
-                            transition: 'background 0.3s ease',
-                            cursor: 'pointer',
-                            background:
-                                activeView === 'products'
-                                    ? 'rgba(255, 255, 255, 0.2)'
-                                    : 'transparent',
-                            '&:hover': {
-                                background: 'rgba(255, 255, 255, 0.2)',
-                            },
-                        }}
-                    >
-                        <ShoppingCartIcon
+                    {role === 1 ? (
+                        <Box
+                            onClick={() => setActiveView('products')}
                             sx={{
-                                color: 'text.primary',
-                                marginRight: '15px',
-                                fontSize: '24px',
-                            }}
-                        />
-                        <Typography
-                            sx={{
-                                color: 'text.primary',
-                                textDecoration: 'none',
-                                fontSize: '16px',
-                                fontWeight: '500',
+                                display: 'flex',
+                                alignItems: 'center',
+                                margin: '20px 0',
+                                padding: '10px',
+                                borderRadius: '8px',
+                                transition: 'background 0.3s ease',
+                                cursor: 'pointer',
+                                background:
+                                    activeView === 'products'
+                                        ? 'rgba(255, 255, 255, 0.2)'
+                                        : 'transparent',
+                                '&:hover': {
+                                    background: 'rgba(255, 255, 255, 0.2)',
+                                },
                             }}
                         >
-                            Twoje towary
-                        </Typography>
-                    </Box>
+                            <ShoppingCartIcon
+                                sx={{
+                                    color: 'text.primary',
+                                    marginRight: '15px',
+                                    fontSize: '24px',
+                                }}
+                            />
+                            <Typography
+                                sx={{
+                                    color: 'text.primary',
+                                    textDecoration: 'none',
+                                    fontSize: '16px',
+                                    fontWeight: '500',
+                                }}
+                            >
+                                Twoje towary
+                            </Typography>
+                        </Box>
+                    ) : null}
                     <Box
                         sx={{
                             display: 'flex',

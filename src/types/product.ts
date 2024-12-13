@@ -10,11 +10,11 @@ export type Product = {
 };
 
 export interface ProductForm {
-    name: string;
-    description: string;
-    category: Categories;
-    price: number;
-    photoUrl: string;
-    availableAmount: number;
+    Name: string;
+    Description: string;
+    CategoryId: string;
+    Price: number;
+    PhotoUrl: string; // Now a Base64 string
+    AvailableAmount: number;
+    UserId: string;
 }
-export type Categories = 0 | 1;

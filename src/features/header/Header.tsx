@@ -193,7 +193,7 @@ const Header = ({ onThemeToggle, isDarkMode }: Props) => {
                     </Search>
                     <Box sx={{ width: 100 }} />
                     {role === 2 ? (
-                        <Link to={'/cart'}>
+                        <Link to={'/cartPage'}>
                             <IconButton aria-label="cart" size="large">
                                 <ShoppingCartIcon fontSize="inherit" />
                             </IconButton>

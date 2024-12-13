@@ -38,11 +38,15 @@ export const productApiSlice = api.injectEndpoints({
             }),
             providesTags: ['Product'],
         }),
-        postProduct: builder.mutation<void, ProductForm>({
-            query: (credentials) => ({
+        postProduct: builder.mutation<void, FormData>({
+            query: (formData) => ({
                 url: '/products',
                 method: 'post',
-                data: credentials,
+                data: formData,
+                headers: {
+                    'Skip-Content-Type': true,
+                },
+                formData: true,
             }),
             invalidatesTags: ['Product'],
         }),

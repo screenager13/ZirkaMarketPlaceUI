@@ -10,7 +10,6 @@ const ProductsList = () => {
     const { data } = useGetMyProductsQuery();
     const id = useSelector(selectId);
     const products = data?.items.filter((elem) => elem.userId === id);
-    console.log(products, id);
 
     return (
         <>

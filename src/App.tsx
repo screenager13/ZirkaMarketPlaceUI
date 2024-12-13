@@ -9,14 +9,14 @@ import {
 import MainPage from './pages/mainPage/MainPage.tsx';
 import Header from './features/header/Header.tsx';
 import SingleProduct from './pages/singleProduct/SingleProduct.tsx';
-import PaymentForm from './features/paymentForm/PaymentForm.tsx';
+import PaymentPage from './pages/paymentPage/PaymentPage.tsx';
 import SignIn from './pages/singIn/SingIn.tsx';
 import SingUp from './pages/singUp/SingUp.tsx';
 import Dashboard from './pages/dashBoard/DashBoard.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTheme, toggleTheme } from './api/theme/themeSlice.ts';
 import { createCustomTheme } from './style/ColorTheme.ts';
-import Cart from './pages/cart/CartPage.tsx';
+import Cart from './pages/cartPage/CartPage.tsx';
 import { useRefreshQuery } from './api/user/authApiSlice.ts';
 import CategoryPage from './pages/categoryPage/CategoryPage.tsx';
 
@@ -54,14 +54,14 @@ function App() {
                         />
                         <Routes>
                             <Route path={'/'} element={<MainPage />} />
-                            <Route path={'/cart'} element={<Cart />} />
+                            <Route path={'/cartPage'} element={<Cart />} />
                             <Route
                                 path={'/products/:id'}
                                 element={<SingleProduct />}
                             />
                             <Route
                                 path={'/payment'}
-                                element={<PaymentForm />}
+                                element={<PaymentPage />}
                             />
                             <Route
                                 path={'/category/:id'}

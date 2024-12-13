@@ -1,28 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
     Box,
     Typography,
     Button,
     TextField,
-    Divider,
     Snackbar,
     Alert,
     CircularProgress,
 } from '@mui/material';
 import ErrorIcon from '@mui/icons-material/Error';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { selectPaymentInfo } from '../../api/cart/cartSlice.ts';
+import { useSelector } from 'react-redux';
+import { usePaymentMutation } from '../../api/cart/cartApiSlice.ts';
+import { useNavigate } from 'react-router-dom';
 
-interface CartItem {
-    id: number;
-    name: string;
-    price: number;
-}
-
-const PaymentForm = () => {
-    const [cartItems, setCartItems] = useState<CartItem[]>([]);
-    const [cardNumber, setCardNumber] = useState<string>('');
-    const [cardExpiry, setCardExpiry] = useState<string>('');
-    const [cardCVC, setCardCVC] = useState<string>('');
+const PaymentPage = () => {
+    const [cardNumber, setCardNumber] = useState<string>('4242-4242-4242-4242');
+    const [cardExpiry, setCardExpiry] = useState<string>('30/30');
+    const [cardCVC, setCardCVC] = useState<string>('333');
     const [cardNumberError, setCardNumberError] = useState<boolean>(false);
     const [cardExpiryError, setCardExpiryError] = useState<boolean>(false);
     const [cardCVCError, setCardCVCError] = useState<boolean>(false);
@@ -33,7 +29,14 @@ const PaymentForm = () => {
         'Card',
     );
     const [blikMessage, setBlikMessage] = useState<string>('');
-    const discountPercentage = 15;
+
+    const [payment] = usePaymentMutation();
+
+    const purchaseData = useSelector(selectPaymentInfo);
+
+    const sum: number = purchaseData.purchaseItemDtos.reduce((total, item) => {
+        return total + item.price * item.quantity;
+    }, 0);
 
     const formatCardNumber = (value: string) =>
         value
@@ -66,18 +69,7 @@ const PaymentForm = () => {
         setCardExpiryError(!validateExpiry(formattedExpiry));
     };
 
-    useEffect(() => {
-        setCartItems([
-            { id: 1, name: 'Produkt 1', price: 413.5 },
-            { id: 2, name: 'Produkt 2', price: 17.35 },
-            { id: 3, name: 'Produkt 3', price: 62.7 },
-        ]);
-    }, []);
-
-    const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
-    const discountAmount = (totalPrice * discountPercentage) / 100;
-    const finalPrice = totalPrice - discountAmount;
-
+    const navigate = useNavigate();
     const handlePayment = () => {
         const isCardNumberEmpty = !cardNumber;
         const isCardExpiryEmpty = !cardExpiry;
@@ -96,12 +88,11 @@ const PaymentForm = () => {
             return;
         }
 
-        setIsProcessing(true);
+        setOpenSuccess(true);
+        payment(purchaseData);
         setTimeout(() => {
-            setOpenSuccess(true);
-            setIsProcessing(false);
-            setTimeout(() => (window.location.href = '/'), 1500);
-        }, 2000);
+            navigate('/');
+        }, 1000);
     };
 
     const handleButtonClick = (button: 'Card' | 'BLIK') => {
@@ -161,7 +152,12 @@ const PaymentForm = () => {
                 >
                     <TextField
                         label="Numer karty"
-                        slotProps={{ inputLabel: { sx: { marginTop: -1.2 } } }}
+                        slotProps={{
+                            input: {
+                                readOnly: true,
+                            },
+                            inputLabel: { sx: { marginTop: -1.2 } },
+                        }}
                         variant="outlined"
                         color="secondary"
                         value={cardNumber}
@@ -179,6 +175,9 @@ const PaymentForm = () => {
                         <TextField
                             label="Data ważności (MM/RR)"
                             slotProps={{
+                                input: {
+                                    readOnly: true,
+                                },
                                 inputLabel: { sx: { marginTop: -1.2 } },
                             }}
                             variant="outlined"
@@ -196,6 +195,9 @@ const PaymentForm = () => {
                         <TextField
                             label="CVC"
                             slotProps={{
+                                input: {
+                                    readOnly: true,
+                                },
                                 inputLabel: { sx: { marginTop: -1.2 } },
                             }}
                             variant="outlined"
@@ -216,50 +218,17 @@ const PaymentForm = () => {
                 </Box>
             )}
             {selectedButton === 'Card' && (
-                <>
-                    <Divider sx={{ mb: 4 }} />
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            mb: 2,
-                        }}
-                    >
-                        <Typography variant="body1">Całkowita cena:</Typography>
-                        <Typography variant="h6">
-                            ${totalPrice.toFixed(2)}
-                        </Typography>
-                    </Box>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            mb: 2,
-                        }}
-                    >
-                        <Typography variant="body1">
-                            Zaoszczędziłeś na rabacie ({discountPercentage}%):
-                        </Typography>
-                        <Typography variant="h6" color="success.main">
-                            ${discountAmount.toFixed(2)}
-                        </Typography>
-                    </Box>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            mb: 2,
-                        }}
-                    >
-                        <Typography variant="body1">Do zapłaty:</Typography>
-                        <Typography variant="h6">
-                            ${finalPrice.toFixed(2)}
-                        </Typography>
-                    </Box>
-                </>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        mb: 2,
+                    }}
+                >
+                    <Typography variant="body1">Do zapłaty:</Typography>
+                    <Typography variant="h6">${sum.toFixed(2)}</Typography>
+                </Box>
             )}
             {selectedButton === 'Card' && (
                 <Button
@@ -311,4 +280,4 @@ const PaymentForm = () => {
     );
 };
 
-export default PaymentForm;
+export default PaymentPage;

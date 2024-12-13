@@ -31,7 +31,13 @@ const CartPageItem = ({ id, quantity }: { id: string; quantity: number }) => {
         }
     };
     useEffect(() => {
-        dispatch(changeQuantity({ productId: id, quantity: quantityState }));
+        dispatch(
+            changeQuantity({
+                productId: id,
+                quantity: quantityState,
+                price: product?.price || 0,
+            }),
+        );
     }, [dispatch, id, quantityState]);
     if (!product) {
         return <CircularProgress />;
