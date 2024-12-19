@@ -45,10 +45,12 @@ const SingleProductPage = () => {
         <Container
             maxWidth={'lg'}
             sx={{
+                height: 'auto',
+                pt: { xs: 9, sm: 10 },
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: '100vh',
+                minHeight: '100vh',
             }}
         >
             <SingleProductItem product={product} />
