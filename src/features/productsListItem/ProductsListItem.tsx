@@ -21,7 +21,6 @@ const ProductsListItem = ({ product }: { product: Product }) => {
                     minHeight: '240px',
                     p: 3,
                     borderRadius: 3,
-                    // border: 1,
                     gap: 1,
                     width: 250,
                     transition: 'transform 0.2s ease, box-shadow 0.2s ease',
@@ -51,7 +50,9 @@ const ProductsListItem = ({ product }: { product: Product }) => {
                             }}
                         />
                     </Box>
-                    <Typography variant="h5">{`${name}`}</Typography>
+                    <Box height={65} display={'flex'} alignItems={'center'}>
+                        <Typography variant="h5">{`${name}`}</Typography>
+                    </Box>
 
                     <Rating
                         emptyIcon={<StarBorderIcon sx={{ color: 'gray' }} />}
